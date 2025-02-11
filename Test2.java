@@ -6,14 +6,18 @@ import java.awt.*;
 import static org.junit.Assert.*;
 
 public class Test2 {
-    private Bil bil;
+    private Car car;
     private Volvo240 volvo;
     private Saab95 saab;
+    private Scania scania;
+    private CarTransport carTransport;
 
     @Before
     public void setUp() {
         volvo = new Volvo240();//NrDoors = 4, enginePower = 100, color = black, name = Volvo240
         saab = new Saab95();//NrDoors = 2, enginePower = 125, color = red, name = Saab95
+        scania = new Scania();
+        carTransport = new CarTransport();
     }
 
     @Test
@@ -132,6 +136,36 @@ public class Test2 {
         saab.brake(0.5);
         assertTrue(saab.getCurrentSpeed() <= initialSpeed);
     }
+
+    //scania tests
+
+    @Test
+    public void testRaiseAndLower()
+    {
+        scania.raise(50);
+        assertEquals(50, scania.getAngle(), 0.001);
+
+        scania.raise(50);
+        assertEquals(70, scania.getAngle(), 0.001);
+
+        scania.lower(50);
+        assertEquals(20, scania.getAngle(), 0.001);
+
+        scania.lower(50);
+        assertEquals(0, scania.getAngle(), 0.001);
+
+
+    }
+    @Test
+    public void Addcar(){
+        carTransport.angle = 1;
+
+        carTransport.addCar(saab);
+        //biltransport.addCar(new CarTransport());
+    }
+
+
+
 
 }
 

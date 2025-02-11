@@ -1,6 +1,6 @@
 import java.awt.*;
 
-public abstract class Bil implements Movable{
+public abstract class Car implements Movable{
 
     private int nrDoors; // Number of doors on the car
     private double enginePower; // Engine power of the car
@@ -14,7 +14,7 @@ public abstract class Bil implements Movable{
     public double posY;
 
 
-    public Bil(int NrDoors, double enginePower, Color color, String modelName)
+    public Car(int NrDoors, double enginePower, Color color, String modelName)
     {
         this.nrDoors = NrDoors;
         this.enginePower = enginePower;
@@ -54,11 +54,11 @@ public abstract class Bil implements Movable{
     //methods that the child classes have different implementations to
     public abstract double speedFactor();
 
-    public void incrementSpeed(double amount){
+    private void incrementSpeed(double amount){
         currentSpeed = Math.min(getCurrentSpeed() + speedFactor() * amount,enginePower);
     }
 
-    public void decrementSpeed(double amount){
+    private void decrementSpeed(double amount){
         currentSpeed = Math.max(getCurrentSpeed() - speedFactor() * amount,0);
     }
 
@@ -100,5 +100,9 @@ public abstract class Bil implements Movable{
 
     public void turnRight() {
         dir = (dir + 1) % 4;
+    }
+    public double distance(Car car1, Car car2)
+    {
+        return (Math.sqrt((Math.pow(car1.posX - car2.posX, 2)) + (Math.pow(car1.posY - car2.posY, 2))));
     }
 }
