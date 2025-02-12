@@ -9,9 +9,10 @@ public abstract class Car implements Movable{
     private String modelName; // The car model name
 
     //these are public because test class needs to access these direct due to no get methods exist for these variables
-    public int dir = 0;
-    public double posX;
-    public double posY;
+    private int dir;
+    private double posX;
+    private double posY;
+
 
 
     public Car(int NrDoors, double enginePower, Color color, String modelName)
@@ -105,4 +106,25 @@ public abstract class Car implements Movable{
     {
         return (Math.sqrt((Math.pow(car1.posX - car2.posX, 2)) + (Math.pow(car1.posY - car2.posY, 2))));
     }
+    public int getDir()
+    {
+        return dir;
+    }
+    public double getPosX()
+    {
+        return this.posX;
+    }
+    public double getPosY()
+    {
+        return this.posY;
+    }
+    public void setPosX(double x)
+    {
+        this.posX = x;
+    }
+    public void setPosY(double y)
+    {
+        this.posY = y;
+    }
+
 }

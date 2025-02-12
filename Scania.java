@@ -1,54 +1,43 @@
 import java.awt.*;
 
-public class Scania extends Lorry {
-
+public class Scania extends Car {
+    private Ramp ramp;
     public  Scania()
     {
         super(2, 200, Color.black, "Scania");
+        ramp = new Ramp(70);
     }
 
-    @Override
-    public void raise()
-    {
-        throw new IllegalArgumentException ("must have a amount");
-    }
     public void raise(double increase)
     {
-        if(increase < 0 || getCurrentSpeed() != 0)//make sure not increase is negatve or moving
-        {
-            return;
-        }
-        else if(angle + increase > 70)
-        {
-            angle = 70;
+        ramp.raise(increase);
+    }
 
-        }
-        else
+    public void lower(double decrease)
+    {
+        if(getCurrentSpeed() == 0)
         {
-            angle += increase;
+            ramp.lower(decrease);
         }
     }
 
     @Override
-    public void lower()
-    {
-        throw new IllegalArgumentException ("must have a amount");
+    public double speedFactor() {
+        return 1;
     }
-    public void lower(double decrease)
+    public double getAngle()
     {
-        if(decrease < 0 || getCurrentSpeed() != 0)//make sure not decrease is negatve or moving
-        {
-            return;
-        }
-        else if(angle - decrease < 0)
-        {
-            angle = 0;
-
-        }
-        else
-        {
-            angle -= decrease;
-        }
+        return ramp.getAngle();
     }
 
+    @Override
+    public void move()
+    {
+        if(ramp.getAngle() == 0)
+        {
+            super.move();
+        }
+
+
+    }
 }

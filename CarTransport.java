@@ -1,37 +1,40 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class CarTransport extends Lorry {
+public class CarTransport extends Car{
     public Stack<Car> cars = new Stack<>();
+    private Ramp ramp = new Ramp(1);
     private int maxAmount;
     public  CarTransport(int maxAmount)
     {
         super(2 , 300, Color.red, "Biltransport");
         this.maxAmount = maxAmount;
-    }
-    @Override
-    public void raise()
-    {
-        angle = 0;//this is up
+
     }
 
-    @Override
+    public void raise()
+    {
+        ramp.raise(1);
+    }
+
+
     public void lower()
     {
-        if(getCurrentSpeed() != 0)
+        if(getCurrentSpeed() == 0)
         {
-            return;
+            ramp.lower(1);
+            System.out.println("fast");
         }
-        angle = 1;
+
 
     }
     public void addCar(Car car)
     {
-        if(distance(car, this) < 20 && car.getClass() != CarTransport.class && angle == 1 && cars.size() < maxAmount)
+        if(distance(car, this) < 20 && car.getClass() != CarTransport.class && ramp.getAngle() == 0 && cars.size() < maxAmount)
         {
             cars.push(car);
-            car.posX = this.posX;
-            car.posX = this.posY;
+            car.setPosX(this.getPosX());
+            car.setPosY(this.getPosY());
 
 
         }
@@ -44,29 +47,37 @@ public class CarTransport extends Lorry {
     }
     public void removeCar()
     {
-        if(angle == 1)
+        if(ramp.getAngle() == 0)
         {
-            cars.peek().posX = this.posX +5;
+            cars.peek().startEngine();
+            cars.peek().move();
+
             cars.pop();
         }
 
 
 
     }
+
+    @Override
+    public double speedFactor() {
+        return 1;
+    }
+
     @Override
     public void move()
     {
-        if(angle !=0)
+        if(ramp.getAngle() == 1)
         {
-            return;
-        }
-        super.move();
-        for(Car c : cars)
-        {
-            c.posX = this.posX;
-            c.posY = this.posY;
-        }
+            super.move();
 
+            for(Car c : cars)
+            {
+                c.setPosX(this.getPosX());
+                c.setPosY(this.getPosY());
+            }
+        }
     }
+
 
 }

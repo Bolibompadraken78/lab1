@@ -3,7 +3,7 @@ import java.util.List;
 
 public class garage<T extends Car>
 {
-    private List<T> cars;
+    private List<T> cars = new ArrayList<>();
 
 
 
@@ -12,6 +12,7 @@ public class garage<T extends Car>
 
     public garage(int maxAmount)
     {
+
         this.maxAmount = maxAmount;
 
     }

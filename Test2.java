@@ -17,7 +17,7 @@ public class Test2 {
         volvo = new Volvo240();//NrDoors = 4, enginePower = 100, color = black, name = Volvo240
         saab = new Saab95();//NrDoors = 2, enginePower = 125, color = red, name = Saab95
         scania = new Scania();
-        carTransport = new CarTransport(2);
+        carTransport = new CarTransport(10);
 
     }
 
@@ -46,32 +46,32 @@ public class Test2 {
     @Test
     public void testTurnLeft() {
         saab.turnLeft();
-        assertEquals(3, saab.dir);
+        assertEquals(3, saab.getDir());
 
         saab.turnLeft();
-        assertEquals(2, saab.dir);
+        assertEquals(2, saab.getDir());
 
         saab.turnLeft();
-        assertEquals(1, saab.dir);
+        assertEquals(1, saab.getDir());
 
         saab.turnLeft();
-        assertEquals(0, saab.dir);
+        assertEquals(0, saab.getDir());
 
     }
 
     @Test
     public void testTurnRight() {
         saab.turnRight();
-        assertEquals(1, saab.dir);
+        assertEquals(1, saab.getDir());
 
         saab.turnRight();
-        assertEquals(2, saab.dir);
+        assertEquals(2, saab.getDir());
 
         saab.turnRight();
-        assertEquals(3, saab.dir);
+        assertEquals(3, saab.getDir());
 
         saab.turnRight();
-        assertEquals(0, saab.dir);
+        assertEquals(0, saab.getDir());
     }
 
     @Test
@@ -79,24 +79,26 @@ public class Test2 {
         // dir = 0 (up)
         saab.startEngine();
         saab.move();
-        assertEquals(0.0, saab.posX, 0.0001);
-        assertEquals(0.1, saab.posY, 0.0001);
+        assertEquals(0.0, saab.getPosX(), 0.0001);
+        assertEquals(0.1, saab.getPosY(), 0.0001);
 
         saab.turnRight(); // dir = 1 (right)
         saab.move();
-        assertEquals(0.1, saab.posX, 0.0001);
-        assertEquals(0.1, saab.posY, 0.0001);
+        assertEquals(0.1, saab.getPosX(), 0.0001);
+        assertEquals(0.1, saab.getPosY(), 0.0001);
+
+
 
 
         saab.turnRight(); // dir = 2 (down)
         saab.move();
-        assertEquals(0.1, saab.posX, 0.0001);
-        assertEquals(0.0, saab.posY, 0.0001);
+        assertEquals(0.1, saab.getPosX(), 0.0001);
+        assertEquals(0.0, saab.getPosY(), 0.0001);
 
         saab.turnRight(); // dir = 3 (left)
         saab.move();
-        assertEquals(0.0, saab.posX, 0.0001);
-        assertEquals(0.0, saab.posY, 0.0001);
+        assertEquals(0.0, saab.getPosX(), 0.0001);
+        assertEquals(0.0, saab.getPosY(), 0.0001);
 
         //dont test deafault
     }
@@ -173,11 +175,11 @@ public class Test2 {
         carTransport.startEngine();
         carTransport.move();
 
-        carTransport.dir = 1;
+        carTransport.turnRight();
         carTransport.move();
 
-        assertEquals(carTransport.posY, saab.posY , 0.001);//should be 0.1 on both
-        assertEquals(carTransport.posX, saab.posX , 0.001);
+        assertEquals(carTransport.getPosY(), saab.getPosY() , 0.001);//should be 0.1 on both
+        assertEquals(carTransport.getPosX(), saab.getPosX() , 0.001);
 
     }
 
