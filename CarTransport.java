@@ -3,9 +3,11 @@ import java.util.Stack;
 
 public class CarTransport extends Lorry {
     public Stack<Car> cars = new Stack<>();
-    public  CarTransport()
+    private int maxAmount;
+    public  CarTransport(int maxAmount)
     {
         super(2 , 300, Color.red, "Biltransport");
+        this.maxAmount = maxAmount;
     }
     @Override
     public void raise()
@@ -21,10 +23,11 @@ public class CarTransport extends Lorry {
             return;
         }
         angle = 1;
+
     }
     public void addCar(Car car)
     {
-        if(distance(car, this) < 20 && car.getClass() != CarTransport.class && angle == 1)
+        if(distance(car, this) < 20 && car.getClass() != CarTransport.class && angle == 1 && cars.size() < maxAmount)
         {
             cars.push(car);
             car.posX = this.posX;
@@ -34,7 +37,7 @@ public class CarTransport extends Lorry {
         }
         else
         {
-            throw new RuntimeException("Car not close enough or car is a transport or ramp is not down");
+            throw new RuntimeException("Car not close enough or car is a transport or ramp is not down or transport is full");
         }
 
 

@@ -1,34 +1,29 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class garage
+public class garage<T extends Car>
 {
-    private List<Car> cars;
-    private Car allowedCar;
+    private List<T> cars;
+
+
+
+
     int maxAmount;
-    public garage(Car allowedCar,int maxAmount)
-    {
-        this.maxAmount = maxAmount;
-        this.allowedCar = allowedCar;
-    }
+
     public garage(int maxAmount)
     {
         this.maxAmount = maxAmount;
 
     }
-    public void addCar(Car car)
+    public void addCar(T car)
     {
         if(cars.size() < maxAmount)
         {
-            if (allowedCar == null) {
                 cars.add(car);
-            } else if (car.getClass() == allowedCar.getClass()) {
-                addCar(car);
-            }else throw new RuntimeException("wrong car type");
         }else throw new RuntimeException("garage is full");
 
     }
-    public void removeCar(Car car)
+    public void removeCar(T car)
     {
         cars.remove(car);
     }

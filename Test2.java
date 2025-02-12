@@ -17,7 +17,8 @@ public class Test2 {
         volvo = new Volvo240();//NrDoors = 4, enginePower = 100, color = black, name = Volvo240
         saab = new Saab95();//NrDoors = 2, enginePower = 125, color = red, name = Saab95
         scania = new Scania();
-        carTransport = new CarTransport();
+        carTransport = new CarTransport(2);
+
     }
 
     @Test
@@ -158,12 +159,35 @@ public class Test2 {
     }
     @Test
     public void Addcar(){
-        carTransport.angle = 1;
 
+        carTransport.lower();
         carTransport.addCar(saab);
-        //biltransport.addCar(new CarTransport());
+        carTransport.addCar(volvo);
+        carTransport.removeCar();
+
+
+        assertEquals(saab, carTransport.cars.peek());//last in ws removed so next last in is peek
+
+        carTransport.raise();
+
+        carTransport.startEngine();
+        carTransport.move();
+
+        carTransport.dir = 1;
+        carTransport.move();
+
+        assertEquals(carTransport.posY, saab.posY , 0.001);//should be 0.1 on both
+        assertEquals(carTransport.posX, saab.posX , 0.001);
+
     }
 
+    @Test
+    public void GarageTest()
+    {
+        garage<Volvo240> volovGarage= new garage<>(2);
+        volovGarage.addCar(volvo);
+        //volovGarage.addCar(saab); //compiler error
+    }
 
 
 
