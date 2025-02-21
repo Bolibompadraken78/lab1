@@ -1,8 +1,9 @@
 import java.awt.*;
+//import java.lang.classfile.instruction.ReturnInstruction;
 import java.util.Stack;
 
 public class CarTransport extends Car{
-    public Stack<Car> cars = new Stack<>();
+    private Stack<Car> cars = new Stack<>();
     private Ramp ramp = new Ramp(1);
     private int maxAmount;
     public  CarTransport(int maxAmount)
@@ -57,6 +58,10 @@ public class CarTransport extends Car{
 
 
 
+    }
+    public Stack<Car> getCars()
+    {
+        return cars;
     }
 
     @Override

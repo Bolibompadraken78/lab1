@@ -12,12 +12,18 @@ public class Test2 {
     private Scania scania;
     private CarTransport carTransport;
 
+
     @Before
     public void setUp() {
         volvo = new Volvo240();//NrDoors = 4, enginePower = 100, color = black, name = Volvo240
         saab = new Saab95();//NrDoors = 2, enginePower = 125, color = red, name = Saab95
         scania = new Scania();
         carTransport = new CarTransport(10);
+        saab.turnLeft();
+        saab.setPosX(0);
+        saab.setPosY(0);
+        volvo.setPosX(0);
+        volvo.setPosY(0);
 
     }
 
@@ -77,8 +83,10 @@ public class Test2 {
     @Test
     public void testMove() {
         // dir = 0 (up)
+
         saab.startEngine();
         saab.move();
+
         assertEquals(0.0, saab.getPosX(), 0.0001);
         assertEquals(0.1, saab.getPosY(), 0.0001);
 
@@ -168,7 +176,7 @@ public class Test2 {
         carTransport.removeCar();
 
 
-        assertEquals(saab, carTransport.cars.peek());//last in ws removed so next last in is peek
+        assertEquals(saab, carTransport.getCars().peek());//last in ws removed so next last in is peek
 
         carTransport.raise();
 
