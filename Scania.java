@@ -4,7 +4,7 @@ public class Scania extends Car {
     private Ramp ramp;
     public  Scania()
     {
-        super(2, 200, Color.black, "Scania");
+        super(2, 200, Color.black, "Scania",0,0);
         ramp = new Ramp(70);
     }
 

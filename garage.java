@@ -3,7 +3,7 @@ import java.util.List;
 
 public class garage<T extends Car>
 {
-    private List<T> cars = new ArrayList<>();
+    private List<T> cars = new ArrayList<>(0);
 
 
 
@@ -21,7 +21,8 @@ public class garage<T extends Car>
         if(cars.size() < maxAmount)
         {
                 cars.add(car);
-        }else throw new RuntimeException("garage is full");
+        }
+        else throw new RuntimeException("garage is full" + cars);
 
     }
     public void removeCar(T car)

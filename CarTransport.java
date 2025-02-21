@@ -7,7 +7,7 @@ public class CarTransport extends Car{
     private int maxAmount;
     public  CarTransport(int maxAmount)
     {
-        super(2 , 300, Color.red, "Biltransport");
+        super(2 , 300, Color.red, "CarTransport",0,0);
         this.maxAmount = maxAmount;
 
     }

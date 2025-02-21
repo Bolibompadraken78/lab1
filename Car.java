@@ -9,18 +9,20 @@ public abstract class Car implements Movable{
     private String modelName; // The car model name
 
     //these are public because test class needs to access these direct due to no get methods exist for these variables
-    private int dir;
+    private int dir = 1;
     private double posX;
     private double posY;
 
 
 
-    public Car(int NrDoors, double enginePower, Color color, String modelName)
+    public Car(int NrDoors, double enginePower, Color color, String modelName, int x, int y)
     {
         this.nrDoors = NrDoors;
         this.enginePower = enginePower;
         this.color = color;
         this.modelName = modelName;
+        this.posX = x;
+        this.posY = y;
         stopEngine();
     }
 
@@ -64,12 +66,12 @@ public abstract class Car implements Movable{
     }
 
 
-    // TODO fix this method according to lab pm
+
     public void gas(double amount){
         incrementSpeed( Math.max(0, Math.min(1, amount)));
     }
 
-    // TODO fix this method according to lab pm
+
     public void brake(double amount){
         decrementSpeed(Math.max(0, Math.min(1, amount)));
     }

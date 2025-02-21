@@ -4,7 +4,7 @@ public class Saab95 extends Car {
     public boolean turboOn; //test needs it to be public
 
     public Saab95(){
-        super(2, 125, Color.red, "Saab95");
+        super(2, 125, Color.red, "Saab95",0,200);
 	    setTurboOff();
     }
     //assume only Saab class should have turbo
