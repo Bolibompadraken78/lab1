@@ -1,0 +1,7 @@
+*Vissa generella metoder som alla slags fordon ska implementara borde finnas i movable såssom, gas(), getPos() osv (DIP)
+*separera UI-annpassning(färger etc) från carView och UI logik(vad knapparna gör) i två olika klasser(SRP,högre Cohesion)
+
+
+*skapa en lastbil superklass som scania och biltransport extendar samt skapa en vehicle som är superklass för car och lastbil, nu kan man lätt identifera om en fordon är en bil
+eller en lastbil. (DIP,hjälper med lösare koppling för förebyggande syften)
+*ändra drawpanels car beroende och anvönd Vehicle klassen istälett så man i framtiden kan rita upp andra fordon (lösare koppling, DIP)
