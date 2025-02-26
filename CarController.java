@@ -11,7 +11,7 @@ import java.awt.*;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class    CarController {
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -55,8 +55,8 @@ public class CarController {
         public void actionPerformed(ActionEvent e) {
             for (int i = 0; i < cars.size(); i++) {
                 cars.get(i).move();
-                int x = (int) Math.round(cars.get(i).getPosX());
-                int y = (int) Math.round(cars.get(i).getPosY());
+                int x = (int) Math.round(cars.get(i).posX);
+                int y = (int) Math.round(cars.get(i).posY);
                 Point carDimension = new Point(frame.drawPanel.getImages().get(cars.get(i)).getWidth(), frame.drawPanel.getImages().get(cars.get(i)).getHeight());
                 Point workshopP = frame.drawPanel.getvolvoWorkshopPoint();
                 BufferedImage workshopImg = frame.drawPanel.getVolvoWorkshopImage();

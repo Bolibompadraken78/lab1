@@ -8,10 +8,11 @@ public abstract class Car implements Movable{
     private Color color; // Color of the car
     private String modelName; // The car model name
 
-    //these are public because test class needs to access these direct due to no get methods exist for these variables
+
     private int dir = 1;
-    private double posX;
-    private double posY;
+    //should be protected but test is not a subtybe of car
+    public double posX;
+    public double posY;
 
 
 
@@ -112,21 +113,6 @@ public abstract class Car implements Movable{
     {
         return dir;
     }
-    public double getPosX()
-    {
-        return this.posX;
-    }
-    public double getPosY()
-    {
-        return this.posY;
-    }
-    public void setPosX(double x)
-    {
-        this.posX = x;
-    }
-    public void setPosY(double y)
-    {
-        this.posY = y;
-    }
+
 
 }

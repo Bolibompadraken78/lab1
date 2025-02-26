@@ -34,8 +34,8 @@ public class CarTransport extends Car{
         if(distance(car, this) < 20 && car.getClass() != CarTransport.class && ramp.getAngle() == 0 && cars.size() < maxAmount)
         {
             cars.push(car);
-            car.setPosX(this.getPosX());
-            car.setPosY(this.getPosY());
+            car.posX = this.posX;
+            car.posY = this.posY;
 
 
         }
@@ -78,8 +78,8 @@ public class CarTransport extends Car{
 
             for(Car c : cars)
             {
-                c.setPosX(this.getPosX());
-                c.setPosY(this.getPosY());
+                c.posX = this.posX;
+                c.posY = this.posY;
             }
         }
     }

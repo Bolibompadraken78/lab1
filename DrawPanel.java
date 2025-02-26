@@ -35,7 +35,7 @@ public class DrawPanel extends JPanel {
         try {
             BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(imagePath));
             carImages.put(car, image);
-            carPositions.put(car, new Point((int) car.getPosX(), (int) car.getPosY()));
+            carPositions.put(car, new Point((int) car.posX, (int) car.posY));
         } catch (IOException ex) {
             ex.printStackTrace();
         }

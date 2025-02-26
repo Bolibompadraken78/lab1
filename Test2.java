@@ -20,11 +20,11 @@ public class Test2 {
         scania = new Scania();
         carTransport = new CarTransport(10);
         saab.turnLeft();
-        saab.setPosX(0);
-        saab.setPosY(0);
-        volvo.setPosX(0);
-        volvo.setPosY(0);
+        saab.posX = 0;
+        saab.posY = 0;
 
+        volvo.posY = 0;
+        volvo.posX = 0;
     }
 
     @Test
@@ -87,26 +87,26 @@ public class Test2 {
         saab.startEngine();
         saab.move();
 
-        assertEquals(0.0, saab.getPosX(), 0.0001);
-        assertEquals(0.1, saab.getPosY(), 0.0001);
+        assertEquals(0.0, saab.posX, 0.0001);
+        assertEquals(0.1, saab.posY, 0.0001);
 
         saab.turnRight(); // dir = 1 (right)
         saab.move();
-        assertEquals(0.1, saab.getPosX(), 0.0001);
-        assertEquals(0.1, saab.getPosY(), 0.0001);
+        assertEquals(0.1, saab.posX, 0.0001);
+        assertEquals(0.1, saab.posY, 0.0001);
 
 
 
 
         saab.turnRight(); // dir = 2 (down)
         saab.move();
-        assertEquals(0.1, saab.getPosX(), 0.0001);
-        assertEquals(0.0, saab.getPosY(), 0.0001);
+        assertEquals(0.1, saab.posX, 0.0001);
+        assertEquals(0.0, saab.posY, 0.0001);
 
         saab.turnRight(); // dir = 3 (left)
         saab.move();
-        assertEquals(0.0, saab.getPosX(), 0.0001);
-        assertEquals(0.0, saab.getPosY(), 0.0001);
+        assertEquals(0.0, saab.posX, 0.0001);
+        assertEquals(0.0, saab.posY, 0.0001);
 
         //dont test deafault
     }
@@ -186,8 +186,8 @@ public class Test2 {
         carTransport.turnRight();
         carTransport.move();
 
-        assertEquals(carTransport.getPosY(), saab.getPosY() , 0.001);//should be 0.1 on both
-        assertEquals(carTransport.getPosX(), saab.getPosX() , 0.001);
+        assertEquals(carTransport.posY, saab.posY , 0.001);//should be 0.1 on both
+        assertEquals(carTransport.posX, saab.posX , 0.001);
 
     }
 
