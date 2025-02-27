@@ -8,6 +8,9 @@ eller en lastbil. (DIP,hjälper med lösare koppling för förebyggande syften)
 
 
 arraylistor kan initierade som listor/collection som är mer abstract
-*flytta liseners i carView till Carcontroller så att carView inte behöver ha en komposition av carContrller
 
-*skaffa en manager som skapar bilar samt skickar in bilder som ui
+*skapa en application app som skapar alla andra klasser och har en update function
+*skaffa en factory som skapar bilar samt skickar in bilder som ui
+
+Skapa Carmanager som hanterar carcontroller calls.
+skapa knappar i både carview och controller för att lättare implementation(hanteras av application)
