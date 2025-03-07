@@ -13,17 +13,19 @@ public class ExternalButtons extends JFrame {
 
 
 
-    public ExternalButtons() {
-
+    public ExternalButtons(Application app) {
+        CarFactory = new CarFactory();
+        application = app;
         InitComponents();
     }
 
     public static void main(String[] args)
     {
-        Application app = new Application();
 
-        ExternalButtons eB = new ExternalButtons();
-        eB.application = app;
+        Application app = new Application();
+        new ExternalButtons(app);
+
+
 
     }
 
@@ -31,7 +33,7 @@ public class ExternalButtons extends JFrame {
     public void InitComponents()
     {
         buttonPanel = new JPanel();
-        buttonPanel.setPreferredSize(new Dimension((800/2)+4, 200)); // Layout for buttons
+        buttonPanel.setPreferredSize(new Dimension(100, 100)); // Layout for buttons
 
         JButton addCar =  new JButton("addVolvo");
         JButton removeCar =  new JButton("removeCar");
@@ -39,7 +41,8 @@ public class ExternalButtons extends JFrame {
         buttonPanel.add(addCar);
         buttonPanel.add(removeCar);
         buttonPanel.setBackground(Color.CYAN);
-        application.add(buttonPanel);
+        application.add(buttonPanel, BorderLayout.SOUTH);
+        application.pack();
         application.revalidate();
         application.repaint();
 
@@ -47,7 +50,7 @@ public class ExternalButtons extends JFrame {
         addCar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addCar(CarFactory.createVolvo());
+                addCar();
             }
         });
 
@@ -62,17 +65,17 @@ public class ExternalButtons extends JFrame {
 
 
     }
-    public void addCar(Vehicle car)
+    public void addCar()
     {
-        if(application.cars.size() <= maxCars)
+        if(application.getNumberOfCars() <= maxCars)
         {
-            application.cars.add(car);
+            application.addCar(CarFactory.createVolvo());
         }
 
     }
     public  void removeCar()
     {
-        application.cars.remove(application.cars.getFirst());
+        application.removeCar();
     }
 
 
