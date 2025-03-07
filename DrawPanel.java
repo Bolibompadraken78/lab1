@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class DrawPanel extends JPanel {
 
-    private Map<Car, Point> carPositions = new HashMap<>();
-    private Map<Car, BufferedImage> carImages = new HashMap<>();
+    private Map<Vehicle, Point> carPositions = new HashMap<>();
+    private Map<Vehicle, BufferedImage> carImages = new HashMap<>();
 
 
     BufferedImage volvoWorkshopImage;
@@ -31,7 +31,7 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    public void addCar(Car car, String imagePath) {
+    public void addCar(Vehicle car, String imagePath) {
         try {
             BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(imagePath));
             carImages.put(car, image);
@@ -40,19 +40,19 @@ public class DrawPanel extends JPanel {
             ex.printStackTrace();
         }
     }
-    public void removeCar(Car car)
+    public void removeCar(Vehicle car)
     {
         carImages.remove(car);
     }
 
-    public void moveit(Car car, int x, int y) {
+    public void moveit(Vehicle car, int x, int y) {
         Point point = carPositions.get(car);
             point.x = x;
             point.y = y;
 
 
     }
-    public  Map<Car, BufferedImage> getImages()
+    public  Map<Vehicle, BufferedImage> getImages()
     {
         return carImages;
     }
@@ -69,7 +69,7 @@ public class DrawPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Map.Entry<Car, Point> entry : carPositions.entrySet()) {
+        for (Map.Entry<Vehicle, Point> entry : carPositions.entrySet()) {
             BufferedImage image = carImages.get(entry.getKey());
             Point point = entry.getValue();
             g.drawImage(image, point.x, point.y, null);

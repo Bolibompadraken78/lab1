@@ -11,16 +11,16 @@ import java.awt.event.ActionListener;
  * It communicates with the Controller by calling methods of it when an action fires of in
  * each of it's components.
  * TODO: Write more actionListeners and wire the rest of the buttons
- **/
+
 
 public class CarView extends JFrame{
-    private static final int X = 800;
-    private static final int Y = 800;
+
+
 
     // The controller member
     CarController carC;
 
-    DrawPanel drawPanel = new DrawPanel(X, Y-240);
+
 
     JPanel controlPanel = new JPanel();
 
@@ -40,7 +40,7 @@ public class CarView extends JFrame{
     JButton stopButton = new JButton("Stop all cars");
 
     // Constructor
-    public CarView(String framename, CarController cc){
+    public CarView(, CarController cc){
         this.carC = cc;
         initComponents(framename);
     }
@@ -53,7 +53,6 @@ public class CarView extends JFrame{
         this.setPreferredSize(new Dimension(X,Y));
         this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
-        this.add(drawPanel);
 
 
 
@@ -167,3 +166,4 @@ public class CarView extends JFrame{
 
     }
 }
+ **/
