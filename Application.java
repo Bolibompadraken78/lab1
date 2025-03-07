@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 
-public class Application {
+public class Application{
 
     private final int delay = 50;
     private Timer timer = new Timer(delay, new Application.TimerListener());

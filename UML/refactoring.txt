@@ -14,3 +14,14 @@ arraylistor kan initierade som listor/collection som är mer abstract
 
 Skapa Carmanager som hanterar carcontroller calls.
 skapa knappar i både carview och controller för att lättare implementation(hanteras av application)
+
+
+Nuvarande problem: Controller är inte så "thinn", har inte bara knappar men hela framen med drawpanel okså,
+detta gör det svårt att lägga till knappar utan att prata med controllern.
+Lösning:
+Application är en frame som har alla knappar direkt(liseners kan vara här? och anropa funktioner i kontrollen då)
+då blir det lätt att för andra klasser att lägga till bilar/ knappar då de behöver bara prata med App
+
+Alternativ version: Application är en frame men knapparna finns inte här, det finns i controller och det finns en funktion
+i controller som returnerar alla knappar som en stror panel vilket applcication anroper och lägger till i framen
+this.add(cc.getControllPanel)
