@@ -13,11 +13,9 @@ import java.awt.*;
 * modifying the model state and the updating the view.
  */
 
-public class    CarController extends JFrame {
-    private int X;
-    private int Y;
+public class    CarController {
 
-
+    JPanel allPanels = new JPanel();
 
     JPanel controlPanel = new JPanel();
 
@@ -35,34 +33,24 @@ public class    CarController extends JFrame {
 
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
+    private int X;
+    private int Y;
+
+
+
     CarManager carManager;
 
-    public CarController(String framename, int X, int Y, DrawPanel drawPanel, CarManager carManager)
+    public CarController(CarManager carManager, int X, int Y)
     {
-        this.carManager = carManager;
         this.X = X;
         this.Y = Y;
-        initComponents(framename, drawPanel);
+        this.carManager = carManager;
 
+        innitComponent();
 
     }
-
-
-
-
-    private void initComponents(String title, DrawPanel drawPanel) {
-
-        this.setTitle(title);
-        this.setPreferredSize(new Dimension(X,Y));
-        this.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
-
-        this.add(drawPanel);
-
-
-
-
-
-
+    private void innitComponent()
+    {
         SpinnerModel spinnerModel =
                 new SpinnerNumberModel(0, //initial value
                         0, //min
@@ -79,7 +67,7 @@ public class    CarController extends JFrame {
         gasPanel.add(gasLabel, BorderLayout.PAGE_START);
         gasPanel.add(gasSpinner, BorderLayout.PAGE_END);
 
-        this.add(gasPanel);
+        allPanels.add(gasPanel);
 
         controlPanel.setLayout(new GridLayout(2,4));
 
@@ -90,23 +78,21 @@ public class    CarController extends JFrame {
         controlPanel.add(turboOffButton, 4);
         controlPanel.add(lowerButton, 5);
         controlPanel.setPreferredSize(new Dimension((X/2)+4, 200));
-        this.add(controlPanel);
+        allPanels.add(controlPanel);
         controlPanel.setBackground(Color.CYAN);
 
 
         startButton.setBackground(Color.blue);
         startButton.setForeground(Color.green);
         startButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(startButton);
+        allPanels.add(startButton);
 
 
 
         stopButton.setBackground(Color.red);
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
-        this.add(stopButton);
-
-        // This actionListener is for the gas button only
+        allPanels.add(stopButton);
 
         gasButton.addActionListener(new ActionListener() {
             @Override
@@ -158,19 +144,17 @@ public class    CarController extends JFrame {
                 stopEngine();
             }
         });
-
-        // Make the frame pack all it's components by respecting the sizes if possible.
-        this.pack();
-
-        // Get the computer screen resolution
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        // Center the frame
-        this.setLocation(dim.width/2-this.getSize().width/2, dim.height/2-this.getSize().height/2);
-        // Make the frame visible
-        this.setVisible(true);
-        // Make sure the frame exits when "x" is pressed
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
+
+    public JPanel getControlPanel2()
+    {
+        return allPanels;
+    }
+
+
+
+
+
 
     // Calls the gas method for each car once
     void gas(int amount) {
