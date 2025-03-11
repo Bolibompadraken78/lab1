@@ -34,16 +34,16 @@ public class    CarController {
     JButton startButton = new JButton("Start all cars");
     JButton stopButton = new JButton("Stop all cars");
     private int X;
-    private int Y;
+
 
 
 
     CarManager carManager;
 
-    public CarController(CarManager carManager, int X, int Y)
+    public CarController(CarManager carManager, int X)
     {
         this.X = X;
-        this.Y = Y;
+
         this.carManager = carManager;
 
         innitComponent();
@@ -93,6 +93,15 @@ public class    CarController {
         stopButton.setForeground(Color.black);
         stopButton.setPreferredSize(new Dimension(X/5-15,200));
         allPanels.add(stopButton);
+
+
+        JButton addCar =  new JButton("addVolvo");
+        JButton removeCar =  new JButton("removeCar");
+
+        controlPanel.add(addCar);
+        controlPanel.add(removeCar);
+
+
 
         gasButton.addActionListener(new ActionListener() {
             @Override
@@ -144,7 +153,21 @@ public class    CarController {
                 stopEngine();
             }
         });
+        addCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                addCar();
+            }
+        });
+
+        removeCar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                removeCar();
+            }
+        });
     }
+
 
     public JPanel getControlPanel2()
     {
@@ -200,5 +223,16 @@ public class    CarController {
         carManager.stopEngine();
 
     }
+    public void addCar()
+    {
+
+            carManager.addCar(CarFactory.createVolvo());
+
+    }
+    public  void removeCar()
+    {
+        carManager.removeCar();
+    }
+
 
 }

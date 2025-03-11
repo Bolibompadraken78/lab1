@@ -1,5 +1,5 @@
 public class CarFactory {
-    public Car createVolvo()
+    public static Car createVolvo()
     {
         return new Volvo240();
     }

@@ -11,8 +11,8 @@ import java.util.Map;
 
 public class DrawPanel extends JPanel {
 
-    private Map<Vehicle, Point> carPositions = new HashMap<>();
-    private Map<Vehicle, BufferedImage> carImages = new HashMap<>();
+    private Map<Object, Point> objPositions = new HashMap<>();
+    private Map<Object, BufferedImage> carImages = new HashMap<>();
 
 
     BufferedImage volvoWorkshopImage;
@@ -31,28 +31,30 @@ public class DrawPanel extends JPanel {
         }
     }
 
-    public void addCar(Vehicle car, String imagePath) {
+    public void addCar(Object obj, String imagePath, int X, int Y) {
         try {
             BufferedImage image = ImageIO.read(DrawPanel.class.getResourceAsStream(imagePath));
-            carImages.put(car, image);
-            carPositions.put(car, new Point((int) car.posX, (int) car.posY));
+            carImages.put(obj, image);
+            objPositions.put(obj, new Point( X,  Y));
         } catch (IOException ex) {
             ex.printStackTrace();
         }
     }
-    public void removeCar(Vehicle car)
+    public void removeCar(Object obj)
     {
-        carImages.remove(car);
+
+        carImages.remove(obj);
+
     }
 
-    public void moveit(Vehicle car, int x, int y) {
-        Point point = carPositions.get(car);
+    public void moveit(Object obj, int x, int y) {
+        Point point = objPositions.get(obj);
             point.x = x;
             point.y = y;
 
 
     }
-    public  Map<Vehicle, BufferedImage> getImages()
+    public  Map<Object, BufferedImage> getImages()
     {
         return carImages;
     }
@@ -69,7 +71,7 @@ public class DrawPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        for (Map.Entry<Vehicle, Point> entry : carPositions.entrySet()) {
+        for (Map.Entry<Object, Point> entry : objPositions.entrySet()) {
             BufferedImage image = carImages.get(entry.getKey());
             Point point = entry.getValue();
             g.drawImage(image, point.x, point.y, null);
